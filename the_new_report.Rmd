@@ -1,0 +1,49 @@
+---
+title: "NewReport"
+author: "DT"
+date: "4/3/2019"
+output: html_document
+---
+
+This is my report, it will have stuff.
+Examples:
+
+**This is what happens when I use 2 asterisks**
+
+_This is what happens when I use underscores_
+
+This list has bullets:
+
+* Bullet 1
+* Bullet 2
+* Bullet 3
+
+in between the lines there has to be a blank line so there is a linebreak
+
+```{r load_data}
+gapminder <- read.csv("./data/gapminder_data.csv")
+library(ggplot2)
+library(dplyr)
+gapminder %>% 
+  mutate(pop_millions = pop / 10^6) %>%
+  group_by(continent) %>%
+  summarize(mean_pop_millions = mean(pop_millions)) %>%
+  ggplot(aes(x = continent, y = mean_pop_millions)) + geom_point()
+
+ggplot(data = gapminder,
+       aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(color = continent), alpha = 0.5) + scale_x_log10() + 
+  geom_smooth(method = "lm", color = "black", se = 0.9999, size = 2) +
+  facet_wrap(~continent) +
+  labs(
+    x = "GDP per Capita", 
+    y = "Life Expectancy", 
+    title = "Figure 1",
+    color = "Continent"
+    ) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+```
+
+
+
+
