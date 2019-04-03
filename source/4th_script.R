@@ -38,4 +38,55 @@ grouped_by_continent_year %>% dplyr::summarise(mean_pop = mean(pop))
 
 
 # How many countries have data in year 2002?
-gapminder %>%
+gapminder %>% filter(year == 2002) %>% count(country, sort = TRUE)
+
+# How many countries per continent have data in year 2002?
+gapminder %>% filter(year == 2002) %>% count(continent, sort = TRUE)
+
+# to check the maximum number a country has data per year
+year2002 <- gapminder %>% filter(year == 2002) %>% count(country, sort = TRUE)
+max(year2002$n)
+
+# to check the maximum number a continent has data per year
+year2002cont <- gapminder %>% filter(year == 2002) %>% count(continent, sort = TRUE)
+max(year2002cont$n)
+
+
+# Calculate population in millions
+# group this by continent
+# create a summary with the mean
+
+pop_millions_summary <- gapminder %>% mutate(pop_millions = pop / 10^6) %>%
+  group_by(continent) %>%
+  summarize(mean_pop_millions = mean(pop_millions))
+
+pop_millions_summary
+
+# ---- start using these things and put them into a plot instead of a table
+
+pop_millions_summary %>% ggplot(aes(x = continent, y = mean_pop_millions)) +
+  geom_point()
+
+# or cleaner and from the beginning
+gapminder %>% 
+  mutate(pop_millions = pop / 10^6) %>%
+  group_by(continent) %>%
+  summarize(mean_pop_millions = mean(pop_millions)) %>%
+  ggplot(aes(x = continent, y = mean_pop_millions)) + geom_point()
+
+# using if/else function
+
+if (3 == 4) {
+  print("The world has gone crazy")
+} else {
+  print("Everything is ok")
+}
+
+
+# can combine several states
+if (3 == 3 & FALSE) {
+  print("The world has gone crazy")
+} else {
+  print("Everything is ok")
+}
+
