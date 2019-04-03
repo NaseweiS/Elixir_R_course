@@ -44,7 +44,7 @@ cats <- cbind(cats, paws = c(4 ,4, 4))
 cats <- rbind(cats, list("white", 2, 1, 4)) 
 # but at this point the factor is not working
 
-# explore values:
+# -------- explore values -----------
 typeof (c(TRUE, 1))
   # a capital L behind the number makes the double an integer
 typeof (c(TRUE, 1L))
@@ -87,6 +87,9 @@ names(my_named_vector) <- c("a", "b", "c")
 
 # (reading out the vector - with this you can see the change between the created vector and the named created vector)
 my_named_vector
+
+
+
 
 # ----- back to the cats ----
 
@@ -175,3 +178,4 @@ rbind(cats, cats)
 
 # stores it as a new dataset
 doublecats <- rbind(cats,cats)
+
