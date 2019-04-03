@@ -163,3 +163,15 @@ matrix_by_rows
 dim(matrix_example)
 dim(matrix_by_rows)
 dim(another_matrix)
+
+length(matrix_example)
+
+
+
+# ----- Append a dataframe to another one -------
+
+# add the cats dataframe to the cats dataframe (all factors are the same):
+rbind(cats, cats)
+
+# stores it as a new dataset
+doublecats <- rbind(cats,cats)
