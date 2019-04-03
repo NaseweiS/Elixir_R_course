@@ -72,3 +72,18 @@ ggplot(data = gapminder,
   geom_point(aes(color = continent), alpha = 0.5) + scale_x_log10() + 
   geom_smooth(method = "lm", color = "black", se = 0.9999)
 
+# changing the thickness of the line
+ggplot(data = gapminder,
+       aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(color = continent), alpha = 0.5) + scale_x_log10() + 
+  geom_smooth(method = "lm", color = "black", se = 0.9999, size = 2)
+
+# creating different plots for each continent
+ggplot(data = gapminder,
+       aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(color = continent), alpha = 0.5) + scale_x_log10() + 
+  geom_smooth(method = "lm", color = "black", se = 0.9999, size = 2) +
+  facet_wrap(~continent)
+
+
+
